@@ -1,4 +1,6 @@
-const createTask = (title, description, dueDate, priority) => {
+const createTask = (id, title, description, dueDate, priority) => {
+  const getId = () => id;
+
   const getTitle = () => title;
 
   const getDescription = () => description;
@@ -21,12 +23,11 @@ const createTask = (title, description, dueDate, priority) => {
   };
 
   const getObject = () => {
-    console.log(
-      `Title: ${title}, description: ${description}, dueDate: ${dueDate}, priority: ${priority}`
-    );
+    return `Id: ${id}, title: ${title}, description: ${description}, dueDate: ${dueDate}, priority: ${priority}`;
   };
 
   return {
+    getId,
     getObject,
     getTitle,
     getDescription,

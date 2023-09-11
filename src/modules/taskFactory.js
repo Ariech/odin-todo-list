@@ -22,13 +22,13 @@ const createTask = (id, title, description, dueDate, priority) => {
     priority = value;
   };
 
-  const getObject = () => {
+  const getInfo = () => {
     return `Id: ${id}, title: ${title}, description: ${description}, dueDate: ${dueDate}, priority: ${priority}`;
   };
 
   return {
     getId,
-    getObject,
+    getInfo,
     getTitle,
     getDescription,
     getDueDate,

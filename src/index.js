@@ -1,10 +1,10 @@
 import "./styles.css";
 import createTask from "./modules/taskFactory";
 import createProject from "./modules/projectFactory";
+import { printTasksFromProject } from "./views/view";
 import {
   addTaskToProjectTasks,
   removeTaskFromProjectTasks,
-  printTasksFromProject,
 } from "./models/model";
 
 const task = createTask(0, "first", "something", "22.2.2023", "red");
@@ -18,8 +18,12 @@ addTaskToProjectTasks(project, task2);
 
 printTasksFromProject(project);
 
-const task3 = createTask(0, "third", "dishes", "12.12.2021", "green");
+const task3 = createTask(2, "third", "dishes", "12.12.2021", "green");
 
 addTaskToProjectTasks(project2, task3);
 
 printTasksFromProject(project2);
+
+removeTaskFromProjectTasks(project, task);
+
+printTasksFromProject(project);

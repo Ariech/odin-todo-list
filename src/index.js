@@ -1,7 +1,7 @@
 import "./styles.css";
 import createTask from "./modules/taskFactory";
 import createProject from "./modules/projectFactory";
-import { printTasksFromProject } from "./views/view";
+import { getInitPage, printTasksFromProject } from "./views/view";
 import {
   addTaskToProjectTasks,
   removeTaskFromProjectTasks,
@@ -27,3 +27,5 @@ printTasksFromProject(project2);
 removeTaskFromProjectTasks(project, task);
 
 printTasksFromProject(project);
+
+getInitPage();

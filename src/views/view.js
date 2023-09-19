@@ -29,7 +29,24 @@ const createHeader = () => {
 const createMain = () => {
   const main = createElement("main", "main");
 
-  main.appendChild(h1);
+  const h1 = createElement("h1");
+  h1.textContent = "Todos";
+
+  const form = createElement("form");
+
+  const input = createElement("input");
+  input.type = "text";
+  input.placeholder = "Add task";
+  input.name = "task";
+
+  const submitButton = createElement("button", "submit-button");
+  submitButton.textContent = "Add task";
+
+  const taskList = createElement("ul", "task-list");
+
+  form.append(input, submitButton);
+
+  main.append(h1, form, taskList);
   return main;
 };
 
@@ -48,9 +65,14 @@ const createFooter = () => {
   githubIcon.classList.add("fa-github");
 
   githubLink.appendChild(githubIcon);
-  footer.appendChild(p);
-  footer.appendChild(githubLink);
+  footer.append(p, githubLink);
   return footer;
+};
+
+const temporaryDisableSubmitButton = () => {
+  const submitButton = getElement(".submit-button");
+
+  submitButton.addEventListener("click", (e) => e.preventDefault());
 };
 
 const getInitPage = () => {
@@ -62,6 +84,7 @@ const getInitPage = () => {
   container.appendChild(createHeader());
   container.appendChild(createMain());
   container.appendChild(createFooter());
+  temporaryDisableSubmitButton();
 };
 
 export { printTasksFromProject, getInitPage };

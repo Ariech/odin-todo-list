@@ -18,16 +18,38 @@ const getElement = (selector) => {
 
 const createHeader = () => {
   const header = createElement("header", "header");
+
+  const h1 = createElement("h1", "title");
+  h1.textContent = "To-Do List";
+
+  header.appendChild(h1);
   return header;
 };
 
 const createMain = () => {
   const main = createElement("main", "main");
+
+  main.appendChild(h1);
   return main;
 };
 
 const createFooter = () => {
   const footer = createElement("footer", "footer");
+
+  const p = createElement("p", "author");
+  p.textContent = "Coded by Ariech";
+
+  const githubLink = createElement("a", "github-link");
+  githubLink.href = "https://github.com/Ariech";
+  githubLink.setAttribute("target", "_blank");
+
+  const githubIcon = createElement("i", "github-icon");
+  githubIcon.classList.add("fa-brands");
+  githubIcon.classList.add("fa-github");
+
+  githubLink.appendChild(githubIcon);
+  footer.appendChild(p);
+  footer.appendChild(githubLink);
   return footer;
 };
 

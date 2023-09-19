@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -8,18 +10,36 @@ html,
 body {
   height: 100%;
   background-color: #423e3e;
+  font-family: "Roboto", sans-serif;
 }
 
+/* Header section */
+
 .header {
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+/* Main section */
 
 .main {
   display: flex;
   flex: 1;
+  height: calc(100vh - 150px);
 }
+
+/* Footer section */
 
 .footer {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 50px;
+}
+
+.fa-github::before {
+  content: "\f09b";
+  color: #fff;
 }

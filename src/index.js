@@ -7,25 +7,25 @@ import {
   removeTaskFromProjectTasks,
 } from "./models/model";
 
-const task = createTask(0, "first", "something", "22.2.2023", "red");
-const task2 = createTask(1, "second", "xxx", "15.4.2028", "yellow");
+// const task = createTask(0, "first", "something", "22.2.2023", "red");
+// const task2 = createTask(1, "second", "xxx", "15.4.2028", "yellow");
 
-const project = createProject("First");
-const project2 = createProject("Second");
+// const project = createProject("First");
+// const project2 = createProject("Second");
 
-addTaskToProjectTasks(project, task);
-addTaskToProjectTasks(project, task2);
+// addTaskToProjectTasks(project, task);
+// addTaskToProjectTasks(project, task2);
 
-printTasksFromProject(project);
+// printTasksFromProject(project);
 
-const task3 = createTask(2, "third", "dishes", "12.12.2021", "green");
+// const task3 = createTask(2, "third", "dishes", "12.12.2021", "green");
 
-addTaskToProjectTasks(project2, task3);
+// addTaskToProjectTasks(project2, task3);
 
-printTasksFromProject(project2);
+// printTasksFromProject(project2);
 
-removeTaskFromProjectTasks(project, task);
+// removeTaskFromProjectTasks(project, task);
 
-printTasksFromProject(project);
+// printTasksFromProject(project);
 
 getInitPage();

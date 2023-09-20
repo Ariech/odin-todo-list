@@ -1,3 +1,10 @@
+import createTask from "../modules/taskFactory";
+import createProject from "../modules/projectFactory";
+import {
+  addTaskToProjectTasks,
+  removeTaskFromProjectTasks,
+} from "../models/model";
+
 const printTasksFromProject = (project) => {
   project.tasks.forEach((ele) => console.log(ele.getInfo()));
 };
@@ -69,10 +76,18 @@ const createFooter = () => {
   return footer;
 };
 
-const temporaryDisableSubmitButton = () => {
-  const submitButton = getElement(".submit-button");
+const addTodo = () => {
+  const form = getElement("form");
+  const textInput = getElement('[name="task"]');
 
-  submitButton.addEventListener("click", (e) => e.preventDefault());
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const task = createTask(0, "first", textInput.value, "22.2.2023", "red");
+    const project = createProject("First");
+    addTaskToProjectTasks(project, task);
+    printTasksFromProject(project);
+  });
 };
 
 const getInitPage = () => {
@@ -84,7 +99,8 @@ const getInitPage = () => {
   container.appendChild(createHeader());
   container.appendChild(createMain());
   container.appendChild(createFooter());
-  temporaryDisableSubmitButton();
+
+  addTodo();
 };
 
 export { printTasksFromProject, getInitPage };

@@ -36,17 +36,41 @@ const createMain = () => {
 
   const form = createElement("form");
 
-  const input = createElement("input");
-  input.type = "text";
-  input.placeholder = "Add task";
-  input.name = "task";
+  const title = createElement("input");
+  title.type = "text";
+  title.placeholder = "Add task";
+  title.name = "task";
+
+  const description = createElement("input");
+  description.type = "text";
+  description.placeholder = "Description";
+  description.name = "description";
+
+  const date = createElement("input");
+  date.type = "date";
+  date.name = "date";
+
+  const colors = createElement("select");
+  colors.name = "colors";
+
+  const red = createElement("option");
+  red.value = "red";
+  red.textContent = "red";
+  const yellow = createElement("option");
+  yellow.value = "yellow";
+  yellow.textContent = "yellow";
+  const green = createElement("option");
+  green.value = "green";
+  green.textContent = "green";
+
+  colors.append(red, yellow, green);
 
   const submitButton = createElement("button", "submit-button");
   submitButton.textContent = "Add task";
 
   const taskList = createElement("ul", "task-list");
 
-  form.append(input, submitButton);
+  form.append(title, description, date, colors, submitButton);
 
   main.append(h1, form, taskList);
   return main;

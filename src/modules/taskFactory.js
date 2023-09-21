@@ -1,5 +1,5 @@
-const createTask = (id, title, description, dueDate, priority) => {
-  const getId = () => id;
+const createTask = (title, description, dueDate, priority) => {
+  const getId = () => Date.now();
 
   const getTitle = () => title;
 
@@ -9,21 +9,8 @@ const createTask = (id, title, description, dueDate, priority) => {
 
   const getPriority = () => priority;
 
-  const setTitle = (value) => {
-    title = value;
-  };
-  const setDescription = (value) => {
-    description = value;
-  };
-  const setDueDate = (value) => {
-    dueDate = value;
-  };
-  const setPriority = (value) => {
-    priority = value;
-  };
-
   const getInfo = () => {
-    return `Id: ${id}, title: ${title}, description: ${description}, dueDate: ${dueDate}, priority: ${priority}`;
+    return `Id: ${getId()}, title: ${title}, description: ${description}, dueDate: ${dueDate}, priority: ${priority}`;
   };
 
   return {
@@ -33,10 +20,6 @@ const createTask = (id, title, description, dueDate, priority) => {
     getDescription,
     getDueDate,
     getPriority,
-    setTitle,
-    setDescription,
-    setDueDate,
-    setPriority,
   };
 };
 

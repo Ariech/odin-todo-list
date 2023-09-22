@@ -1,5 +1,6 @@
 const createTask = (title, description, dueDate, priority) => {
-  const getId = () => new Date().getTime().toString();
+  const id = new Date().getTime().toString();
+  const getId = () => id;
 
   const getTitle = () => title;
 

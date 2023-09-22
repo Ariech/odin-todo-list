@@ -1,7 +1,14 @@
 import { addTodo } from "../controllers/controller";
+import { projectList } from "../models/model";
 
 const printTasksFromProject = (project) => {
   project.tasks.forEach((ele) => console.log(ele.getInfo()));
+};
+
+const printProjectsFromProjectList = () => {
+  for (const project of projectList) {
+    console.log(project.getInfo());
+  }
 };
 
 const createElement = (tag, className) => {
@@ -108,4 +115,10 @@ const getInitPage = () => {
   addTodo();
 };
 
-export { printTasksFromProject, getInitPage, createElement, getElement };
+export {
+  printTasksFromProject,
+  printProjectsFromProjectList,
+  getInitPage,
+  createElement,
+  getElement,
+};

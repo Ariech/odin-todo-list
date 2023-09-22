@@ -1,7 +1,14 @@
 import createTask from "../modules/taskFactory";
 import createProject from "../modules/projectFactory";
-import { addTaskToProjectTasks } from "../models/model";
-import { getElement, printTasksFromProject } from "../views/view";
+import {
+  addTaskToProjectTasks,
+  addProjectToProjectList,
+} from "../models/model";
+import {
+  getElement,
+  printTasksFromProject,
+  printProjectsFromProjectList,
+} from "../views/view";
 
 const addTodo = () => {
   const form = getElement("form");
@@ -19,10 +26,12 @@ const addTodo = () => {
       dateInput.value,
       colorInput.value
     );
+
     const project = createProject("First");
+    addProjectToProjectList(project);
+
     addTaskToProjectTasks(project, task);
     printTasksFromProject(project);
-
     form.reset();
   });
 };

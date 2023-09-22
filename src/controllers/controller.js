@@ -11,7 +11,7 @@ import {
 } from "../views/view";
 
 const addTodo = () => {
-  const form = getElement("form");
+  const form = getElement(".task-form");
   const titleInput = getElement('[name="task"]');
   const descriptionInput = getElement('[name="description"]');
   const dateInput = getElement('[name="date"]');
@@ -27,8 +27,8 @@ const addTodo = () => {
       colorInput.value
     );
 
-    const project = createProject("First");
-    addProjectToProjectList(project);
+    // const project = createProject("First");
+    // addProjectToProjectList(project);
 
     addTaskToProjectTasks(project, task);
     printTasksFromProject(project);
@@ -36,4 +36,19 @@ const addTodo = () => {
   });
 };
 
-export { addTodo };
+const addProject = () => {
+  const form = getElement(".project-form");
+  const titleInput = getElement('[name="project-title"]');
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const project = createProject(titleInput.value);
+    addProjectToProjectList(project);
+
+    printProjectsFromProjectList();
+    form.reset();
+  });
+};
+
+export { addTodo, addProject };

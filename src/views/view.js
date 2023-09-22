@@ -1,4 +1,4 @@
-import { addTodo } from "../controllers/controller";
+import { addTodo, addProject } from "../controllers/controller";
 import { projectList } from "../models/model";
 
 const printTasksFromProject = (project) => {
@@ -41,7 +41,32 @@ const createMain = () => {
   const h1 = createElement("h1");
   h1.textContent = "Todos";
 
+  main.append(createProjectForm(), h1, createTaskForm(), createTaskList());
+  return main;
+};
+
+const createFooter = () => {
+  const footer = createElement("footer", "footer");
+
+  const p = createElement("p", "author");
+  p.textContent = "Coded by Ariech";
+
+  const githubLink = createElement("a", "github-link");
+  githubLink.href = "https://github.com/Ariech";
+  githubLink.setAttribute("target", "_blank");
+
+  const githubIcon = createElement("i", "github-icon");
+  githubIcon.classList.add("fa-brands");
+  githubIcon.classList.add("fa-github");
+
+  githubLink.appendChild(githubIcon);
+  footer.append(p, githubLink);
+  return footer;
+};
+
+const createTaskForm = () => {
   const form = createElement("form");
+  form.className = "task-form";
 
   const title = createElement("input");
   title.type = "text";
@@ -75,31 +100,31 @@ const createMain = () => {
   const submitButton = createElement("button", "submit-button");
   submitButton.textContent = "Add task";
 
-  const taskList = createElement("ul", "task-list");
-
   form.append(title, description, date, colors, submitButton);
 
-  main.append(h1, form, taskList);
-  return main;
+  return form;
 };
 
-const createFooter = () => {
-  const footer = createElement("footer", "footer");
+const createProjectForm = () => {
+  const form = createElement("form");
+  form.className = "project-form";
 
-  const p = createElement("p", "author");
-  p.textContent = "Coded by Ariech";
+  const title = createElement("input");
+  title.type = "text";
+  title.placeholder = "Project name";
+  title.name = "project-title";
 
-  const githubLink = createElement("a", "github-link");
-  githubLink.href = "https://github.com/Ariech";
-  githubLink.setAttribute("target", "_blank");
+  const submitButton = createElement("button", "submit-button");
+  submitButton.textContent = "Submit";
 
-  const githubIcon = createElement("i", "github-icon");
-  githubIcon.classList.add("fa-brands");
-  githubIcon.classList.add("fa-github");
+  form.append(title, submitButton);
 
-  githubLink.appendChild(githubIcon);
-  footer.append(p, githubLink);
-  return footer;
+  return form;
+};
+
+const createTaskList = () => {
+  const taskList = createElement("ul", "task-list");
+  return taskList;
 };
 
 const getInitPage = () => {
@@ -113,6 +138,7 @@ const getInitPage = () => {
   container.appendChild(createFooter());
 
   addTodo();
+  addProject();
 };
 
 export {

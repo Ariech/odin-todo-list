@@ -8,6 +8,7 @@ import {
   getElement,
   printTasksFromProject,
   printProjectsFromProjectList,
+  createProjectElement,
 } from "../views/view";
 
 const addTodo = () => {
@@ -27,9 +28,6 @@ const addTodo = () => {
       colorInput.value
     );
 
-    // const project = createProject("First");
-    // addProjectToProjectList(project);
-
     addTaskToProjectTasks(project, task);
     printTasksFromProject(project);
     form.reset();
@@ -45,6 +43,7 @@ const addProject = () => {
 
     const project = createProject(titleInput.value);
     addProjectToProjectList(project);
+    createProjectElement(project);
 
     printProjectsFromProjectList();
     form.reset();

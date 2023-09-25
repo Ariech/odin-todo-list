@@ -41,7 +41,13 @@ const createMain = () => {
   const h1 = createElement("h1");
   h1.textContent = "Todos";
 
-  main.append(createProjectForm(), h1, createTaskForm(), createTaskList());
+  main.append(
+    createProjectForm(),
+    createProjectList(),
+    h1,
+    createTaskForm(),
+    createTaskList()
+  );
   return main;
 };
 
@@ -123,8 +129,13 @@ const createProjectForm = () => {
 };
 
 const createTaskList = () => {
-  const taskList = createElement("ul", "task-list");
+  const taskList = createElement("div", "task-list");
   return taskList;
+};
+
+const createProjectList = () => {
+  const projectList = createElement("div", "project-list");
+  return projectList;
 };
 
 const getInitPage = () => {
@@ -141,10 +152,21 @@ const getInitPage = () => {
   addProject();
 };
 
+const createProjectElement = (project) => {
+  const projectList = getElement(".project-list");
+  const projectElement = createElement("div");
+  projectElement.classList.add("project-element");
+  console.log(projectList);
+  projectElement.dataset.projectId = project.getId();
+
+  projectList.appendChild(projectElement);
+};
+
 export {
   printTasksFromProject,
   printProjectsFromProjectList,
   getInitPage,
-  createElement,
   getElement,
+  createElement,
+  createProjectElement,
 };

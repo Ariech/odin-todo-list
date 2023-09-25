@@ -30,6 +30,11 @@ body {
   height: calc(100vh - 150px);
 }
 
+.project-element {
+  height: 20px;
+  background-color: red;
+}
+
 /* Footer section */
 
 .footer {

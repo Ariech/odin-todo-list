@@ -3,12 +3,14 @@ import createProject from "../modules/projectFactory";
 import {
   addTaskToProjectTasks,
   addProjectToProjectList,
+  getCurrentProject,
 } from "../models/model";
 import {
   getElement,
   printTasksFromProject,
   printProjectsFromProjectList,
   createProjectElement,
+  createTaskElement,
 } from "../views/view";
 
 const addTodo = () => {
@@ -28,8 +30,11 @@ const addTodo = () => {
       colorInput.value
     );
 
-    addTaskToProjectTasks(project, task);
-    printTasksFromProject(project);
+    addTaskToProjectTasks(getCurrentProject(), task);
+    createTaskElement(task);
+
+    // printTasksFromProject(project);
+
     form.reset();
   });
 };

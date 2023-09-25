@@ -16,10 +16,17 @@ const removeProjectFromProjectList = (project) => {
   projectList.splice(project.getId(), 1);
 };
 
+const getCurrentProject = (project) => {
+  // Temporary solution
+  const [lastProject] = projectList.slice(-1);
+  return lastProject;
+};
+
 export {
   projectList,
   addTaskToProjectTasks,
   removeTaskFromProjectTasks,
   addProjectToProjectList,
   removeProjectFromProjectList,
+  getCurrentProject,
 };

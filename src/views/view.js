@@ -154,12 +154,22 @@ const getInitPage = () => {
 
 const createProjectElement = (project) => {
   const projectList = getElement(".project-list");
+
   const projectElement = createElement("div");
   projectElement.classList.add("project-element");
-  console.log(projectList);
   projectElement.dataset.projectId = project.getId();
 
   projectList.appendChild(projectElement);
+};
+
+const createTaskElement = (task) => {
+  const taskList = getElement(".task-list");
+
+  const taskElement = createElement("div");
+  taskElement.classList.add("task-element");
+  taskElement.dataset.projectId = task.getId();
+
+  taskList.appendChild(taskElement);
 };
 
 export {
@@ -169,4 +179,5 @@ export {
   getElement,
   createElement,
   createProjectElement,
+  createTaskElement,
 };

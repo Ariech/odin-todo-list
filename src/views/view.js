@@ -159,7 +159,12 @@ const createProjectElement = (project) => {
   projectElement.classList.add("project-element");
   projectElement.dataset.projectId = project.getId();
 
-  projectList.appendChild(projectElement);
+  const projectTitle = createElement("p");
+  projectTitle.classList.add("project");
+  projectTitle.textContent = project.getTitle();
+
+  projectElement.append(projectTitle);
+  projectList.append(projectElement);
 };
 
 const createTaskElement = (task) => {
@@ -169,7 +174,24 @@ const createTaskElement = (task) => {
   taskElement.classList.add("task-element");
   taskElement.dataset.projectId = task.getId();
 
-  taskList.appendChild(taskElement);
+  const taskTitle = createElement("p");
+  taskTitle.classList.add("task");
+  taskTitle.textContent = task.getTitle();
+
+  const taskDesc = createElement("p");
+  taskDesc.classList.add("task");
+  taskDesc.textContent = task.getDescription();
+
+  const taskDate = createElement("p");
+  taskDate.classList.add("task");
+  taskDate.textContent = task.getDueDate();
+
+  const taskPriority = createElement("p");
+  taskPriority.classList.add("task");
+  taskPriority.textContent = task.getPriority();
+
+  taskElement.append(taskTitle, taskDesc, taskDate, taskPriority);
+  taskList.append(taskElement);
 };
 
 export {

@@ -1,5 +1,9 @@
 import { addTodo, addProject } from "../controllers/controller";
-import { projectList, addDefaultProject } from "../models/model";
+import {
+  projectList,
+  addDefaultProject,
+  getCurrentProject,
+} from "../models/model";
 
 const printTasksFromProject = (project) => {
   project.tasks.forEach((ele) => console.log(ele.getInfo()));
@@ -130,6 +134,9 @@ const createTaskElement = (task) => {
   const taskPriority = createElement("p");
   taskPriority.classList.add("task");
   taskPriority.textContent = task.getPriority();
+
+  const currentProjectId = task.getProjectId();
+  taskElement.dataset.projectId = currentProjectId;
 
   taskElement.append(taskTitle, taskDesc, taskDate, taskPriority);
   taskList.append(taskElement);

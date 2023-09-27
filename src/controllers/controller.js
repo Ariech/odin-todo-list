@@ -23,14 +23,17 @@ const addTodo = () => {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
+    const project = getCurrentProject();
+
     const task = createTask(
       titleInput.value,
       descriptionInput.value,
       dateInput.value,
-      colorInput.value
+      colorInput.value,
+      project
     );
 
-    addTaskToProjectTasks(getCurrentProject(), task);
+    addTaskToProjectTasks(project, task);
     createTaskElement(task);
 
     // printTasksFromProject(project);

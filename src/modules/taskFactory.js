@@ -1,6 +1,8 @@
-const createTask = (title, description, dueDate, priority) => {
+const createTask = (title, description, dueDate, priority, project) => {
   const id = new Date().getTime().toString();
   const getId = () => id;
+
+  const getProjectId = () => project.getId();
 
   const getTitle = () => title;
 
@@ -16,6 +18,7 @@ const createTask = (title, description, dueDate, priority) => {
 
   return {
     getId,
+    getProjectId,
     getInfo,
     getTitle,
     getDescription,

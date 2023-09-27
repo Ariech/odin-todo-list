@@ -1,3 +1,6 @@
+import createProject from "../modules/projectFactory";
+import { createProjectElement } from "../views/view";
+
 const projectList = [];
 
 const addTaskToProjectTasks = (project, task) => {
@@ -22,6 +25,14 @@ const getCurrentProject = (project) => {
   return lastProject;
 };
 
+const addDefaultProject = () => {
+  // Temp solution
+  const projectList = document.querySelector(".project-list");
+  const temp = createProject("Temporary");
+  addProjectToProjectList(temp);
+  createProjectElement(temp);
+};
+
 export {
   projectList,
   addTaskToProjectTasks,
@@ -29,4 +40,5 @@ export {
   addProjectToProjectList,
   removeProjectFromProjectList,
   getCurrentProject,
+  addDefaultProject,
 };

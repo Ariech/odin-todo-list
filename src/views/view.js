@@ -1,5 +1,5 @@
 import { addTodo, addProject } from "../controllers/controller";
-import { projectList } from "../models/model";
+import { projectList, addDefaultProject } from "../models/model";
 
 const printTasksFromProject = (project) => {
   project.tasks.forEach((ele) => console.log(ele.getInfo()));
@@ -23,51 +23,6 @@ const createElement = (tag, className) => {
 
 const getElement = (selector) => {
   return document.querySelector(selector);
-};
-
-const createHeader = () => {
-  const header = createElement("header", "header");
-
-  const h1 = createElement("h1", "title");
-  h1.textContent = "To-Do List";
-
-  header.appendChild(h1);
-  return header;
-};
-
-const createMain = () => {
-  const main = createElement("main", "main");
-
-  const h1 = createElement("h1");
-  h1.textContent = "Todos";
-
-  main.append(
-    createProjectForm(),
-    createProjectList(),
-    h1,
-    createTaskForm(),
-    createTaskList()
-  );
-  return main;
-};
-
-const createFooter = () => {
-  const footer = createElement("footer", "footer");
-
-  const p = createElement("p", "author");
-  p.textContent = "Coded by Ariech";
-
-  const githubLink = createElement("a", "github-link");
-  githubLink.href = "https://github.com/Ariech";
-  githubLink.setAttribute("target", "_blank");
-
-  const githubIcon = createElement("i", "github-icon");
-  githubIcon.classList.add("fa-brands");
-  githubIcon.classList.add("fa-github");
-
-  githubLink.appendChild(githubIcon);
-  footer.append(p, githubLink);
-  return footer;
 };
 
 const createTaskForm = () => {
@@ -138,20 +93,6 @@ const createProjectList = () => {
   return projectList;
 };
 
-const getInitPage = () => {
-  const body = getElement("body");
-
-  const container = createElement("div", "container");
-  body.appendChild(container);
-
-  container.appendChild(createHeader());
-  container.appendChild(createMain());
-  container.appendChild(createFooter());
-
-  addTodo();
-  addProject();
-};
-
 const createProjectElement = (project) => {
   const projectList = getElement(".project-list");
 
@@ -172,7 +113,7 @@ const createTaskElement = (task) => {
 
   const taskElement = createElement("div");
   taskElement.classList.add("task-element");
-  taskElement.dataset.projectId = task.getId();
+  taskElement.dataset.taskId = task.getId();
 
   const taskTitle = createElement("p");
   taskTitle.classList.add("task");
@@ -192,6 +133,66 @@ const createTaskElement = (task) => {
 
   taskElement.append(taskTitle, taskDesc, taskDate, taskPriority);
   taskList.append(taskElement);
+};
+
+const createHeader = () => {
+  const header = createElement("header", "header");
+
+  const h1 = createElement("h1", "title");
+  h1.textContent = "To-Do List";
+
+  header.appendChild(h1);
+  return header;
+};
+
+const createMain = () => {
+  const main = createElement("main", "main");
+
+  const h1 = createElement("h1");
+  h1.textContent = "Todos";
+
+  main.append(
+    createProjectForm(),
+    createProjectList(),
+    h1,
+    createTaskForm(),
+    createTaskList()
+  );
+  return main;
+};
+
+const createFooter = () => {
+  const footer = createElement("footer", "footer");
+
+  const p = createElement("p", "author");
+  p.textContent = "Coded by Ariech";
+
+  const githubLink = createElement("a", "github-link");
+  githubLink.href = "https://github.com/Ariech";
+  githubLink.setAttribute("target", "_blank");
+
+  const githubIcon = createElement("i", "github-icon");
+  githubIcon.classList.add("fa-brands");
+  githubIcon.classList.add("fa-github");
+
+  githubLink.appendChild(githubIcon);
+  footer.append(p, githubLink);
+  return footer;
+};
+
+const getInitPage = () => {
+  const body = getElement("body");
+
+  const container = createElement("div", "container");
+  body.appendChild(container);
+
+  container.appendChild(createHeader());
+  container.appendChild(createMain());
+  container.appendChild(createFooter());
+
+  addTodo();
+  addProject();
+  addDefaultProject(); // Temp solution
 };
 
 export {

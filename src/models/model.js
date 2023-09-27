@@ -19,7 +19,9 @@ const removeProjectFromProjectList = (project) => {
   projectList.splice(project.getId(), 1);
 };
 
-const getCurrentProject = (project) => {
+// const setCurrentProject = (id) => {};
+
+const getCurrentProject = () => {
   // Temporary solution
   const [lastProject] = projectList.slice(-1);
   return lastProject;

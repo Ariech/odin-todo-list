@@ -53,9 +53,27 @@ const addProject = () => {
     addProjectToProjectList(project);
     createProjectElement(project);
 
-    printProjectsFromProjectList();
+    addProjectListener();
+
+    // printProjectsFromProjectList();
+
     form.reset();
   });
 };
 
-export { addTodo, addProject };
+const addProjectListener = () => {
+  const projects = document.querySelectorAll(".project-element");
+
+  projects.forEach((project) => {
+    console.log(project);
+    project.addEventListener("click", selectProjectIdOnClick);
+  });
+};
+
+const selectProjectIdOnClick = (e) => {
+  const projectId = e.currentTarget.dataset.projectId;
+
+  console.log(`${projectId}`);
+};
+
+export { addTodo, addProject, addProjectListener };

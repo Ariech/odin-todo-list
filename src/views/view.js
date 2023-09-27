@@ -105,7 +105,7 @@ const createProjectElement = (project) => {
   projectElement.dataset.projectId = project.getId();
 
   const projectTitle = createElement("p");
-  projectTitle.classList.add("project");
+  projectTitle.classList.add("project-title");
   projectTitle.textContent = project.getTitle();
 
   projectElement.append(projectTitle);
@@ -141,6 +141,8 @@ const createTaskElement = (task) => {
   taskElement.append(taskTitle, taskDesc, taskDate, taskPriority);
   taskList.append(taskElement);
 };
+
+const renderTasksFromCurrentProject = () => {};
 
 const createHeader = () => {
   const header = createElement("header", "header");

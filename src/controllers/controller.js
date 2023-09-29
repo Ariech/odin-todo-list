@@ -4,6 +4,7 @@ import {
   addTaskToProjectTasks,
   addProjectToProjectList,
   getCurrentProject,
+  setCurrentProject,
 } from "../models/model";
 import {
   getElement,
@@ -36,7 +37,7 @@ const addTodo = () => {
     addTaskToProjectTasks(project, task);
     createTaskElement(task);
 
-    // printTasksFromProject(project);
+    printTasksFromProject(project);
 
     form.reset();
   });
@@ -55,8 +56,6 @@ const addProject = () => {
 
     addProjectListener();
 
-    // printProjectsFromProjectList();
-
     form.reset();
   });
 };
@@ -65,15 +64,13 @@ const addProjectListener = () => {
   const projects = document.querySelectorAll(".project-element");
 
   projects.forEach((project) => {
-    console.log(project);
     project.addEventListener("click", selectProjectIdOnClick);
   });
 };
 
 const selectProjectIdOnClick = (e) => {
   const projectId = e.currentTarget.dataset.projectId;
-
-  console.log(`${projectId}`);
+  setCurrentProject(projectId);
 };
 
 export { addTodo, addProject, addProjectListener };

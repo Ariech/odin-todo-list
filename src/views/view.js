@@ -142,7 +142,15 @@ const createTaskElement = (task) => {
   taskList.append(taskElement);
 };
 
-const renderTasksFromCurrentProject = () => {};
+const renderTasksFromCurrentProject = () => {
+  const currentProject = getCurrentProject();
+  let taskListHtml = getElement(".task-list");
+  taskListHtml.innerHTML = "";
+
+  currentProject.tasks.forEach((task) => {
+    createTaskElement(task);
+  });
+};
 
 const createHeader = () => {
   const header = createElement("header", "header");
@@ -212,4 +220,5 @@ export {
   createElement,
   createProjectElement,
   createTaskElement,
+  renderTasksFromCurrentProject,
 };

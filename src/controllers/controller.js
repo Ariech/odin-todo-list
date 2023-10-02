@@ -12,6 +12,7 @@ import {
   printProjectsFromProjectList,
   createProjectElement,
   createTaskElement,
+  renderTasksFromCurrentProject,
 } from "../views/view";
 
 const addTodo = () => {
@@ -35,9 +36,10 @@ const addTodo = () => {
     );
 
     addTaskToProjectTasks(project, task);
-    createTaskElement(task);
+    // createTaskElement(task);
 
-    printTasksFromProject(project);
+    renderTasksFromCurrentProject();
+    // printTasksFromProject(project);
 
     form.reset();
   });
@@ -71,6 +73,7 @@ const addProjectListener = () => {
 const selectProjectIdOnClick = (e) => {
   const projectId = e.currentTarget.dataset.projectId;
   setCurrentProject(projectId);
+  renderTasksFromCurrentProject();
 };
 
 export { addTodo, addProject, addProjectListener };

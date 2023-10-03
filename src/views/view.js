@@ -108,11 +108,15 @@ const createProjectElement = (project) => {
   projectTitle.classList.add("project-title");
   projectTitle.textContent = project.getTitle();
 
+  const projectEdit = createElement("button");
+  projectEdit.classList.add("project-edit");
+  projectEdit.textContent = "Edit";
+
   const projectRemove = createElement("button");
   projectRemove.classList.add("project-remove");
   projectRemove.textContent = "Remove";
 
-  projectElement.append(projectTitle, projectRemove);
+  projectElement.append(projectTitle, projectEdit, projectRemove);
   projectList.append(projectElement);
 };
 
@@ -142,11 +146,22 @@ const createTaskElement = (task) => {
   const currentProjectId = task.getProjectId();
   taskElement.dataset.projectId = currentProjectId;
 
+  const taskEdit = createElement("button");
+  taskEdit.classList.add("task-edit");
+  taskEdit.textContent = "Edit";
+
   const taskRemove = createElement("button");
   taskRemove.classList.add("task-remove");
   taskRemove.textContent = "Remove";
 
-  taskElement.append(taskTitle, taskDesc, taskDate, taskPriority, taskRemove);
+  taskElement.append(
+    taskTitle,
+    taskDesc,
+    taskDate,
+    taskPriority,
+    taskEdit,
+    taskRemove
+  );
   taskList.append(taskElement);
 };
 

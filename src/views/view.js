@@ -108,7 +108,11 @@ const createProjectElement = (project) => {
   projectTitle.classList.add("project-title");
   projectTitle.textContent = project.getTitle();
 
-  projectElement.append(projectTitle);
+  const projectRemove = createElement("button");
+  projectRemove.classList.add("project-remove");
+  projectRemove.textContent = "Remove";
+
+  projectElement.append(projectTitle, projectRemove);
   projectList.append(projectElement);
 };
 
@@ -138,7 +142,11 @@ const createTaskElement = (task) => {
   const currentProjectId = task.getProjectId();
   taskElement.dataset.projectId = currentProjectId;
 
-  taskElement.append(taskTitle, taskDesc, taskDate, taskPriority);
+  const taskRemove = createElement("button");
+  taskRemove.classList.add("task-remove");
+  taskRemove.textContent = "Remove";
+
+  taskElement.append(taskTitle, taskDesc, taskDate, taskPriority, taskRemove);
   taskList.append(taskElement);
 };
 

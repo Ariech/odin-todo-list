@@ -31,11 +31,14 @@ body {
 }
 
 .project-element {
-  height: 20px;
+  display: flex;
+  gap: 1rem;
   background-color: red;
 }
 
 .task-element {
+  display: flex;
+  gap: 1rem;
   background-color: blue;
 }
 

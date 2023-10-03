@@ -106,15 +106,19 @@ const createProjectElement = (project) => {
 
   const projectTitle = createElement("p");
   projectTitle.classList.add("project-title");
+  projectTitle.classList.add("project-element");
   projectTitle.textContent = project.getTitle();
+  projectTitle.dataset.projectId = project.getId();
 
   const projectEdit = createElement("button");
   projectEdit.classList.add("project-edit");
   projectEdit.textContent = "Edit";
+  projectEdit.dataset.projectId = project.getId();
 
   const projectRemove = createElement("button");
   projectRemove.classList.add("project-remove");
   projectRemove.textContent = "Remove";
+  projectRemove.dataset.projectId = project.getId();
 
   projectElement.append(projectTitle, projectEdit, projectRemove);
   projectList.append(projectElement);
@@ -128,20 +132,24 @@ const createTaskElement = (task) => {
   taskElement.dataset.taskId = task.getId();
 
   const taskTitle = createElement("p");
-  taskTitle.classList.add("task");
+  taskTitle.classList.add("task-title");
   taskTitle.textContent = task.getTitle();
+  taskTitle.dataset.taskId = task.getId();
 
   const taskDesc = createElement("p");
-  taskDesc.classList.add("task");
+  taskDesc.classList.add("task-desc");
   taskDesc.textContent = task.getDescription();
+  taskDesc.dataset.taskId = task.getId();
 
   const taskDate = createElement("p");
-  taskDate.classList.add("task");
+  taskDate.classList.add("task-date");
   taskDate.textContent = task.getDueDate();
+  taskDate.dataset.taskId = task.getId();
 
   const taskPriority = createElement("p");
-  taskPriority.classList.add("task");
+  taskPriority.classList.add("task-priority");
   taskPriority.textContent = task.getPriority();
+  taskPriority.dataset.taskId = task.getId();
 
   const currentProjectId = task.getProjectId();
   taskElement.dataset.projectId = currentProjectId;
@@ -172,6 +180,15 @@ const renderTasksFromCurrentProject = () => {
 
   currentProject.tasks.forEach((task) => {
     createTaskElement(task);
+  });
+};
+
+const renderProjectsFromProjectList = () => {
+  const projectListDOM = getElement(".project-list");
+  projectListDOM.innerHTML = "";
+
+  projectList.forEach((project) => {
+    createProjectElement(project);
   });
 };
 
@@ -244,4 +261,5 @@ export {
   createProjectElement,
   createTaskElement,
   renderTasksFromCurrentProject,
+  renderProjectsFromProjectList,
 };

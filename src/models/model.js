@@ -1,7 +1,8 @@
 import createProject from "../modules/projectFactory";
-import { createProjectElement } from "../views/view";
-import { addProjectListener } from "../controllers/controller";
-
+import {
+  createProjectElement,
+  printProjectsFromProjectList,
+} from "../views/view";
 const projectList = [];
 let currentProject = "";
 
@@ -17,8 +18,15 @@ const addProjectToProjectList = (project) => {
   projectList.push(project);
 };
 
-const removeProjectFromProjectList = (project) => {
-  projectList.splice(project.getId(), 1);
+const removeProjectFromProjectList = (projectId) => {
+  const projectToRemove = projectList.find(
+    (project) => project.getId() === projectId
+  );
+
+  const projectIndex = projectList.indexOf(projectToRemove);
+  projectList.splice(projectIndex, 1);
+
+  printProjectsFromProjectList();
 };
 
 const setCurrentProject = (id) => {
@@ -33,11 +41,9 @@ const getCurrentProject = () => {
 
 const addDefaultProject = () => {
   // Temp solution
-  const projectList = document.querySelector(".project-list");
   const temp = createProject("Temporary");
   addProjectToProjectList(temp);
   createProjectElement(temp);
-  addProjectListener();
   setCurrentProject(temp.getId());
 };
 

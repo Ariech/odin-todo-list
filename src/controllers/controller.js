@@ -5,14 +5,14 @@ import {
   addProjectToProjectList,
   getCurrentProject,
   setCurrentProject,
+  removeProjectFromProjectList,
+  projectList,
 } from "../models/model";
 import {
   getElement,
-  printTasksFromProject,
-  printProjectsFromProjectList,
   createProjectElement,
-  createTaskElement,
   renderTasksFromCurrentProject,
+  renderProjectsFromProjectList,
 } from "../views/view";
 
 const addTodo = () => {
@@ -36,8 +36,6 @@ const addTodo = () => {
     );
 
     addTaskToProjectTasks(project, task);
-    // createTaskElement(task);
-
     renderTasksFromCurrentProject();
     // printTasksFromProject(project);
 
@@ -56,24 +54,36 @@ const addProject = () => {
     addProjectToProjectList(project);
     createProjectElement(project);
 
-    addProjectListener();
+    addProjectListeners();
 
     form.reset();
   });
 };
 
-const addProjectListener = () => {
-  const projects = document.querySelectorAll(".project-element");
-
-  projects.forEach((project) => {
-    project.addEventListener("click", selectProjectIdOnClick);
-  });
-};
-
 const selectProjectIdOnClick = (e) => {
-  const projectId = e.currentTarget.dataset.projectId;
+  const projectId = e.target.dataset.projectId;
   setCurrentProject(projectId);
   renderTasksFromCurrentProject();
 };
 
-export { addTodo, addProject, addProjectListener };
+const removeProjectOnClick = (e) => {
+  const projectId = e.target.dataset.projectId;
+  removeProjectFromProjectList(projectId);
+  setCurrentProject(projectList[0].getId());
+  renderProjectsFromProjectList();
+};
+
+const handleClicks = (e) => {
+  if (e.target.classList.contains("project-element")) {
+    selectProjectIdOnClick(e);
+  } else if (e.target.classList.contains("project-remove")) {
+    removeProjectOnClick(e);
+  }
+};
+
+const addProjectListeners = () => {
+  const projects = document.querySelector(".project-list");
+  projects.addEventListener("click", handleClicks);
+};
+
+export { addTodo, addProject };

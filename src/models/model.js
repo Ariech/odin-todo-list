@@ -1,6 +1,6 @@
 import createProject from "../modules/projectFactory";
 import {
-  createProjectElement,
+  createDefaultProjectElement,
   printProjectsFromProjectList,
 } from "../views/view";
 const projectList = [];
@@ -39,14 +39,6 @@ const getCurrentProject = () => {
   return currentProject;
 };
 
-const addDefaultProject = () => {
-  // Temp solution
-  const temp = createProject("Temporary");
-  addProjectToProjectList(temp);
-  createProjectElement(temp);
-  setCurrentProject(temp.getId());
-};
-
 export {
   projectList,
   addTaskToProjectTasks,
@@ -55,5 +47,4 @@ export {
   removeProjectFromProjectList,
   setCurrentProject,
   getCurrentProject,
-  addDefaultProject,
 };

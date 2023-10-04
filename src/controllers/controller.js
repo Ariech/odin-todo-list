@@ -13,6 +13,7 @@ import {
   createProjectElement,
   renderTasksFromCurrentProject,
   renderProjectsFromProjectList,
+  createDefaultProjectElement,
 } from "../views/view";
 
 const addTodo = () => {
@@ -50,6 +51,11 @@ const addProject = () => {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
+    if (titleInput.value === "Default") {
+      alert("Use other name!");
+      form.reset();
+      return;
+    }
     const project = createProject(titleInput.value);
     addProjectToProjectList(project);
     createProjectElement(project);
@@ -58,6 +64,14 @@ const addProject = () => {
 
     form.reset();
   });
+};
+
+const addDefaultProject = () => {
+  // Temp solution
+  const temp = createProject("Default");
+  addProjectToProjectList(temp);
+  createDefaultProjectElement(temp);
+  setCurrentProject(temp.getId());
 };
 
 const selectProjectIdOnClick = (e) => {
@@ -86,4 +100,4 @@ const addProjectListeners = () => {
   projects.addEventListener("click", handleClicks);
 };
 
-export { addTodo, addProject };
+export { addTodo, addProject, addDefaultProject };

@@ -1,9 +1,9 @@
-import { addTodo, addProject } from "../controllers/controller";
 import {
-  projectList,
+  addTodo,
+  addProject,
   addDefaultProject,
-  getCurrentProject,
-} from "../models/model";
+} from "../controllers/controller";
+import { projectList, getCurrentProject } from "../models/model";
 
 const printTasksFromProject = (project) => {
   project.tasks.forEach((ele) => console.log(ele.getInfo()));
@@ -124,6 +124,23 @@ const createProjectElement = (project) => {
   projectList.append(projectElement);
 };
 
+const createDefaultProjectElement = (project) => {
+  const projectList = getElement(".project-list");
+
+  const projectElement = createElement("div");
+  projectElement.classList.add("project-element");
+  projectElement.dataset.projectId = project.getId();
+
+  const projectTitle = createElement("p");
+  projectTitle.classList.add("project-title");
+  projectTitle.classList.add("project-element");
+  projectTitle.textContent = project.getTitle();
+  projectTitle.dataset.projectId = project.getId();
+
+  projectElement.append(projectTitle);
+  projectList.append(projectElement);
+};
+
 const createTaskElement = (task) => {
   const taskList = getElement(".task-list");
 
@@ -188,7 +205,11 @@ const renderProjectsFromProjectList = () => {
   projectListDOM.innerHTML = "";
 
   projectList.forEach((project) => {
-    createProjectElement(project);
+    if (project.getTitle() === "Default") {
+      createDefaultProjectElement(project);
+    } else {
+      createProjectElement(project);
+    }
   });
 };
 
@@ -259,6 +280,7 @@ export {
   getElement,
   createElement,
   createProjectElement,
+  createDefaultProjectElement,
   createTaskElement,
   renderTasksFromCurrentProject,
   renderProjectsFromProjectList,

@@ -19,9 +19,7 @@ const addProjectToProjectList = (project) => {
 };
 
 const removeProjectFromProjectList = (projectId) => {
-  const projectToRemove = projectList.find(
-    (project) => project.getId() === projectId
-  );
+  const projectToRemove = getProjectById(projectId);
 
   const projectIndex = projectList.indexOf(projectToRemove);
   projectList.splice(projectIndex, 1);
@@ -30,13 +28,20 @@ const removeProjectFromProjectList = (projectId) => {
 };
 
 const setCurrentProject = (id) => {
-  currentProject = projectList.find((project) => project.getId() === id);
-
+  currentProject = getProjectById(id);
   return currentProject;
 };
 
 const getCurrentProject = () => {
   return currentProject;
+};
+
+const getCurrentProjectId = () => {
+  return currentProject.getId();
+};
+
+const getProjectById = (projectId) => {
+  return projectList.find((project) => project.getId() === projectId);
 };
 
 export {
@@ -47,4 +52,5 @@ export {
   removeProjectFromProjectList,
   setCurrentProject,
   getCurrentProject,
+  getCurrentProjectId,
 };

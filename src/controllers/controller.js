@@ -7,6 +7,7 @@ import {
   setCurrentProject,
   removeProjectFromProjectList,
   projectList,
+  getCurrentProjectId,
 } from "../models/model";
 import {
   getElement,

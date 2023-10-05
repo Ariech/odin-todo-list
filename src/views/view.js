@@ -1,8 +1,4 @@
-import {
-  addTodo,
-  addProject,
-  addDefaultProject,
-} from "../controllers/controller";
+import { addDefaultProject, addListeners } from "../controllers/controller";
 import { projectList, getCurrentProject } from "../models/model";
 
 const printTasksFromProject = (project) => {
@@ -268,8 +264,7 @@ const getInitPage = () => {
   container.appendChild(createMain());
   container.appendChild(createFooter());
 
-  addTodo();
-  addProject();
+  addListeners();
   addDefaultProject(); // Temp solution
 };
 

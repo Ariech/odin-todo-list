@@ -39,6 +39,7 @@ const addTodo = () => {
 
     addTaskToProjectTasks(project, task);
     renderTasksFromCurrentProject();
+
     // printTasksFromProject(project);
 
     form.reset();
@@ -60,8 +61,6 @@ const addProject = () => {
     const project = createProject(titleInput.value);
     addProjectToProjectList(project);
     createProjectElement(project);
-
-    addProjectListeners();
 
     form.reset();
   });
@@ -93,7 +92,17 @@ const handleClicks = (e) => {
     selectProjectIdOnClick(e);
   } else if (e.target.classList.contains("project-remove")) {
     removeProjectOnClick(e);
+  } else if (e.target.classList.contains("task-remove")) {
+    removeTaskOnClick(e);
   }
+};
+
+const addTaskListeners = () => {
+  const taskList = document.querySelector(".task-list");
+  taskList.addEventListener("click", () => {
+    const projectId = getCurrentProjectId();
+    console.log(projectId);
+  });
 };
 
 const addProjectListeners = () => {
@@ -101,4 +110,11 @@ const addProjectListeners = () => {
   projects.addEventListener("click", handleClicks);
 };
 
-export { addTodo, addProject, addDefaultProject };
+const addListeners = () => {
+  addTodo();
+  addProject();
+  addProjectListeners();
+  addTaskListeners();
+};
+
+export { addDefaultProject, addListeners };

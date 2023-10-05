@@ -1,8 +1,4 @@
-import createProject from "../modules/projectFactory";
-import {
-  createDefaultProjectElement,
-  printProjectsFromProjectList,
-} from "../views/view";
+import { printProjectsFromProjectList } from "../views/view";
 const projectList = [];
 let currentProject = "";
 
@@ -10,8 +6,15 @@ const addTaskToProjectTasks = (project, task) => {
   project.tasks.push(task);
 };
 
-const removeTaskFromProjectTasks = (project, task) => {
-  project.tasks.splice(task.getId(), 1);
+const removeTaskFromProjectTasks = (projectId, taskId) => {
+  const project = getProjectById(projectId);
+  const task = getTaskById(project, taskId);
+
+  project.tasks.splice(task, 1);
+
+  project.tasks.forEach((task) => {
+    console.log(task.getInfo());
+  });
 };
 
 const addProjectToProjectList = (project) => {
@@ -42,6 +45,10 @@ const getCurrentProjectId = () => {
 
 const getProjectById = (projectId) => {
   return projectList.find((project) => project.getId() === projectId);
+};
+
+const getTaskById = (project, taskId) => {
+  return project.tasks.find((task) => task.getId() === taskId);
 };
 
 export {

@@ -6,6 +6,7 @@ import {
   getCurrentProject,
   setCurrentProject,
   removeProjectFromProjectList,
+  removeTaskFromProjectTasks,
   projectList,
   getCurrentProjectId,
 } from "../models/model";
@@ -85,6 +86,15 @@ const removeProjectOnClick = (e) => {
   removeProjectFromProjectList(projectId);
   setCurrentProject(projectList[0].getId());
   renderProjectsFromProjectList();
+  renderTasksFromCurrentProject();
+};
+
+const removeTaskOnClick = (e) => {
+  const projectId = getCurrentProjectId();
+  const taskId = e.target.dataset.taskId;
+
+  removeTaskFromProjectTasks(projectId, taskId);
+  renderTasksFromCurrentProject();
 };
 
 const handleClicks = (e) => {
@@ -99,10 +109,7 @@ const handleClicks = (e) => {
 
 const addTaskListeners = () => {
   const taskList = document.querySelector(".task-list");
-  taskList.addEventListener("click", () => {
-    const projectId = getCurrentProjectId();
-    console.log(projectId);
-  });
+  taskList.addEventListener("click", handleClicks);
 };
 
 const addProjectListeners = () => {

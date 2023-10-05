@@ -170,10 +170,12 @@ const createTaskElement = (task) => {
   const taskEdit = createElement("button");
   taskEdit.classList.add("task-edit");
   taskEdit.textContent = "Edit";
+  taskEdit.dataset.taskId = task.getId();
 
   const taskRemove = createElement("button");
   taskRemove.classList.add("task-remove");
   taskRemove.textContent = "Remove";
+  taskRemove.dataset.taskId = task.getId();
 
   taskElement.append(
     taskTitle,

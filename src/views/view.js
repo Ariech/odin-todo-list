@@ -137,6 +137,30 @@ const createDefaultProjectElement = (project) => {
   projectList.append(projectElement);
 };
 
+const editProjectModal = () => {
+  const projectModal = createElement("div", "modal-edit");
+
+  const h1 = createElement("h1", "modal-edit-title");
+  h1.textContent = "Edit project";
+
+  const label = createElement("label", "modal-edit-label");
+  label.setAttribute("for", "modal-title");
+  label.textContent = "Title";
+
+  const input = createElement("input", "modal-edit-input");
+  input.setAttribute("name", "modal-title");
+  input.setAttribute("id", "modal-title");
+
+  const cancelButton = createElement("button", "modal-edit-cbutton");
+  cancelButton.textContent = "Cancel";
+
+  const editButton = createElement("button", "modal-edit-ebutton");
+  editButton.textContent = "Edit";
+
+  projectModal.append(h1, label, input, cancelButton, editButton);
+  main.append(projectModal);
+};
+
 const createTaskElement = (task) => {
   const taskList = getElement(".task-list");
 
@@ -267,7 +291,8 @@ const getInitPage = () => {
   container.appendChild(createFooter());
 
   addListeners();
-  addDefaultProject(); // Temp solution
+  addDefaultProject();
+  editProjectModal(); // Temp solution
 };
 
 export {

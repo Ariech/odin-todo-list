@@ -59,7 +59,7 @@ body {
 /* Overlay */
 
 .overlay {
-  display: none;
+  display: block;
   position: fixed;
   left: 0;
   top: 0;
@@ -69,9 +69,14 @@ body {
   margin: 0 auto;
 }
 
+.overlay.hidden {
+  display: none;
+}
+
 /* Modals */
 
 .modal-edit {
+  z-index: 1;
   position: relative;
   margin: 0 auto;
   max-width: 400px;

@@ -41,8 +41,6 @@ const addTodo = () => {
     addTaskToProjectTasks(project, task);
     renderTasksFromCurrentProject();
 
-    // printTasksFromProject(project);
-
     form.reset();
   });
 };
@@ -68,7 +66,6 @@ const addProject = () => {
 };
 
 const addDefaultProject = () => {
-  // Temp solution
   const temp = createProject("Default");
   addProjectToProjectList(temp);
   createDefaultProjectElement(temp);
@@ -99,7 +96,18 @@ const removeTaskOnClick = (e) => {
 
 const showModal = () => {
   const overlay = document.querySelector(".overlay");
-  overlay.style.display = "block";
+  overlay.classList.toggle("hidden");
+};
+
+const closeModal = (e) => {
+  const overlay = document.querySelector(".overlay");
+
+  if (
+    e.target === overlay ||
+    e.target.classList.contains("modal-edit-cbutton")
+  ) {
+    overlay.classList.toggle("hidden");
+  }
 };
 
 const handleClicks = (e) => {
@@ -111,6 +119,8 @@ const handleClicks = (e) => {
     showModal();
   } else if (e.target.classList.contains("task-remove")) {
     removeTaskOnClick(e);
+  } else if (e.currentTarget.classList.contains("overlay")) {
+    closeModal(e);
   }
 };
 
@@ -124,11 +134,17 @@ const addProjectListeners = () => {
   projects.addEventListener("click", handleClicks);
 };
 
+const addOverlayListeners = () => {
+  const overlay = document.querySelector(".overlay");
+  overlay.addEventListener("click", handleClicks);
+};
+
 const addListeners = () => {
   addTodo();
   addProject();
   addProjectListeners();
   addTaskListeners();
+  addOverlayListeners();
 };
 
 export { addDefaultProject, addListeners };

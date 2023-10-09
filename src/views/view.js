@@ -312,7 +312,7 @@ const getInitPage = () => {
 
   addListeners();
   addDefaultProject();
-  editProjectModal(); // Temp solution
+  editProjectModal();
 };
 
 export {

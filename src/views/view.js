@@ -140,8 +140,12 @@ const createDefaultProjectElement = (project) => {
 const editProjectModal = () => {
   const projectModal = createElement("div", "modal-edit");
 
+  const titleContainer = createElement("div", "modal-edit-title-container");
+
   const h1 = createElement("h1", "modal-edit-title");
   h1.textContent = "Edit project";
+
+  const contentContainer = createElement("div", "modal-edit-content-container");
 
   const label = createElement("label", "modal-edit-label");
   label.setAttribute("for", "modal-title");
@@ -151,14 +155,20 @@ const editProjectModal = () => {
   input.setAttribute("name", "modal-title");
   input.setAttribute("id", "modal-title");
 
+  const buttonContainer = createElement("div", "modal-edit-button-container");
+
   const cancelButton = createElement("button", "modal-edit-cbutton");
   cancelButton.textContent = "Cancel";
 
   const editButton = createElement("button", "modal-edit-ebutton");
   editButton.textContent = "Edit";
 
-  projectModal.append(h1, label, input, cancelButton, editButton);
-  main.append(projectModal);
+  titleContainer.append(h1);
+  contentContainer.append(label, input);
+  buttonContainer.append(cancelButton, editButton);
+  projectModal.append(titleContainer, contentContainer, buttonContainer);
+
+  return projectModal;
 };
 
 const createTaskElement = (task) => {
@@ -280,6 +290,15 @@ const createFooter = () => {
   return footer;
 };
 
+const createModalOverlay = () => {
+  const overlay = createElement("div", "overlay");
+  overlay.classList.add("hidden");
+
+  overlay.append(editProjectModal());
+
+  return overlay;
+};
+
 const getInitPage = () => {
   const body = getElement("body");
 
@@ -289,6 +308,7 @@ const getInitPage = () => {
   container.appendChild(createHeader());
   container.appendChild(createMain());
   container.appendChild(createFooter());
+  container.appendChild(createModalOverlay());
 
   addListeners();
   addDefaultProject();

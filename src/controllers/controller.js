@@ -97,11 +97,18 @@ const removeTaskOnClick = (e) => {
   renderTasksFromCurrentProject();
 };
 
+const showModal = () => {
+  const overlay = document.querySelector(".overlay");
+  overlay.style.display = "block";
+};
+
 const handleClicks = (e) => {
   if (e.target.classList.contains("project-element")) {
     selectProjectIdOnClick(e);
   } else if (e.target.classList.contains("project-remove")) {
     removeProjectOnClick(e);
+  } else if (e.target.classList.contains("project-edit")) {
+    showModal();
   } else if (e.target.classList.contains("task-remove")) {
     removeTaskOnClick(e);
   }

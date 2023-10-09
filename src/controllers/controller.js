@@ -16,6 +16,7 @@ import {
   renderTasksFromCurrentProject,
   renderProjectsFromProjectList,
   createDefaultProjectElement,
+  printProjectsFromProjectList,
 } from "../views/view";
 
 const addTodo = () => {
@@ -94,9 +95,11 @@ const removeTaskOnClick = (e) => {
   renderTasksFromCurrentProject();
 };
 
-const showModal = () => {
+const showModal = (e) => {
   const overlay = document.querySelector(".overlay");
   overlay.classList.toggle("hidden");
+
+  selectProjectIdOnClick(e);
 };
 
 const closeModal = (e) => {
@@ -110,17 +113,32 @@ const closeModal = (e) => {
   }
 };
 
+const editProjectTitle = (e) => {
+  const overlay = document.querySelector(".overlay");
+  const editInput = document.querySelector(".modal-edit-input");
+
+  getCurrentProject().setTitle(editInput.value);
+  renderProjectsFromProjectList();
+
+  if (editInput.value !== "") {
+    overlay.classList.toggle("hidden");
+    editInput.value = "";
+  }
+};
+
 const handleClicks = (e) => {
   if (e.target.classList.contains("project-element")) {
     selectProjectIdOnClick(e);
   } else if (e.target.classList.contains("project-remove")) {
     removeProjectOnClick(e);
   } else if (e.target.classList.contains("project-edit")) {
-    showModal();
+    showModal(e);
   } else if (e.target.classList.contains("task-remove")) {
     removeTaskOnClick(e);
   } else if (e.currentTarget.classList.contains("overlay")) {
     closeModal(e);
+  } else if (e.target.classList.contains("modal-edit-ebutton")) {
+    editProjectTitle(e);
   }
 };
 
@@ -139,12 +157,18 @@ const addOverlayListeners = () => {
   overlay.addEventListener("click", handleClicks);
 };
 
+const addEditProjectModalListeners = () => {
+  const editModal = document.querySelector(".modal-edit");
+  editModal.addEventListener("click", handleClicks);
+};
+
 const addListeners = () => {
   addTodo();
   addProject();
   addProjectListeners();
   addTaskListeners();
   addOverlayListeners();
+  addEditProjectModalListeners();
 };
 
 export { addDefaultProject, addListeners };

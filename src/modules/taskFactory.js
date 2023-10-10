@@ -12,6 +12,30 @@ const createTask = (title, description, dueDate, priority, project) => {
 
   const getPriority = () => priority;
 
+  const setTitle = (value) => {
+    if (value) {
+      title = value;
+    }
+  };
+
+  const setDescription = (value) => {
+    if (value) {
+      description = value;
+    }
+  };
+
+  const setDueDate = (value) => {
+    if (value) {
+      dueDate = value;
+    }
+  };
+
+  const setPriority = (value) => {
+    if (value) {
+      priority = value;
+    }
+  };
+
   const getInfo = () => {
     return `Id: ${getId()}, title: ${title}, description: ${description}, dueDate: ${dueDate}, priority: ${priority}`;
   };
@@ -24,6 +48,10 @@ const createTask = (title, description, dueDate, priority, project) => {
     getDescription,
     getDueDate,
     getPriority,
+    setTitle,
+    setDescription,
+    setDueDate,
+    setPriority,
   };
 };
 

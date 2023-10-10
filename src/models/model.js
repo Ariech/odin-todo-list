@@ -1,6 +1,7 @@
 import { printProjectsFromProjectList } from "../views/view";
 const projectList = [];
 let currentProject = "";
+let currentTaskId = "";
 
 const addTaskToProjectTasks = (project, task) => {
   project.tasks.push(task);
@@ -47,6 +48,14 @@ const getProjectById = (projectId) => {
   return projectList.find((project) => project.getId() === projectId);
 };
 
+const setCurrentTaskId = (taskId) => {
+  currentTaskId = taskId;
+};
+
+const getCurrentTaskId = () => {
+  return currentTaskId;
+};
+
 const getTaskById = (project, taskId) => {
   return project.tasks.find((task) => task.getId() === taskId);
 };
@@ -60,4 +69,7 @@ export {
   setCurrentProject,
   getCurrentProject,
   getCurrentProjectId,
+  getTaskById,
+  setCurrentTaskId,
+  getCurrentTaskId,
 };

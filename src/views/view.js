@@ -172,33 +172,73 @@ const editProjectModal = () => {
 };
 
 const editTaskModal = () => {
-  const taskModal = createElement("div", "modal-edit");
+  const taskModal = createElement("div", "modal-edit-task");
 
-  const titleContainer = createElement("div", "modal-edit-title-container");
+  const titleContainer = createElement(
+    "div",
+    "modal-edit-title-container-task"
+  );
 
-  const h1 = createElement("h1", "modal-edit-title");
-  h1.textContent = "Edit project";
+  const h1 = createElement("h1", "modal-edit-title-task");
+  h1.textContent = "Edit task";
 
-  const contentContainer = createElement("div", "modal-edit-content-container");
+  const contentContainer = createElement(
+    "div",
+    "modal-edit-content-container-task"
+  );
 
-  const label = createElement("label", "modal-edit-label");
-  label.setAttribute("for", "modal-title");
-  label.textContent = "Title";
+  const labelTitle = createElement("label", "modal-edit-label-task");
+  labelTitle.setAttribute("for", "modal-title-task");
+  labelTitle.textContent = "Title";
 
-  const input = createElement("input", "modal-edit-input");
-  input.setAttribute("name", "modal-title");
-  input.setAttribute("id", "modal-title");
+  const inputTitle = createElement("input", "modal-title-input-task");
+  inputTitle.setAttribute("name", "modal-title-task");
+  inputTitle.setAttribute("id", "modal-title-task");
+
+  const labelDescription = createElement("label", "modal-edit-label-task");
+  labelDescription.setAttribute("for", "modal-description-task");
+  labelDescription.textContent = "Description";
+
+  const inputDescription = createElement("input", "modal-desc-input-task");
+  inputDescription.setAttribute("name", "modal-description-task");
+  inputDescription.setAttribute("id", "modal-description-task");
+
+  const date = createElement("input");
+  date.type = "date";
+  date.name = "date-edit";
+
+  const colors = createElement("select");
+  colors.name = "colors-edit";
+
+  const red = createElement("option");
+  red.value = "red";
+  red.textContent = "red";
+  const yellow = createElement("option");
+  yellow.value = "yellow";
+  yellow.textContent = "yellow";
+  const green = createElement("option");
+  green.value = "green";
+  green.textContent = "green";
+
+  colors.append(red, yellow, green);
 
   const buttonContainer = createElement("div", "modal-edit-button-container");
 
   const cancelButton = createElement("button", "modal-edit-cbutton");
   cancelButton.textContent = "Cancel";
 
-  const editButton = createElement("button", "modal-edit-ebutton");
+  const editButton = createElement("button", "modal-edit-ebutton-task");
   editButton.textContent = "Edit";
 
   titleContainer.append(h1);
-  contentContainer.append(label, input);
+  contentContainer.append(
+    labelTitle,
+    inputTitle,
+    labelDescription,
+    inputDescription,
+    date,
+    colors
+  );
   buttonContainer.append(cancelButton, editButton);
   taskModal.append(titleContainer, contentContainer, buttonContainer);
 
@@ -329,6 +369,7 @@ const createModalOverlay = () => {
   overlay.classList.add("hidden");
 
   overlay.append(editProjectModal());
+  overlay.append(editTaskModal());
 
   return overlay;
 };

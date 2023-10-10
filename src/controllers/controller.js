@@ -9,6 +9,9 @@ import {
   removeTaskFromProjectTasks,
   projectList,
   getCurrentProjectId,
+  getTaskById,
+  setCurrentTaskId,
+  getCurrentTaskId,
 } from "../models/model";
 import {
   getElement,
@@ -16,7 +19,6 @@ import {
   renderTasksFromCurrentProject,
   renderProjectsFromProjectList,
   createDefaultProjectElement,
-  printProjectsFromProjectList,
 } from "../views/view";
 
 const addTodo = () => {
@@ -79,6 +81,11 @@ const selectProjectIdOnClick = (e) => {
   renderTasksFromCurrentProject();
 };
 
+const selectTaskIdOnClick = (e) => {
+  const taskId = e.target.dataset.taskId;
+  setCurrentTaskId(taskId);
+};
+
 const removeProjectOnClick = (e) => {
   const projectId = e.target.dataset.projectId;
   removeProjectFromProjectList(projectId);
@@ -109,26 +116,75 @@ const showProjectModal = (e) => {
   selectProjectIdOnClick(e);
 };
 
-const closeProjectModal = (e) => {
+const showTaskModal = (e) => {
+  const taskModal = document.querySelector(".modal-edit-task");
+
+  changeOverlayState();
+  taskModal.style.display = "block";
+  selectTaskIdOnClick(e);
+};
+
+const closeModals = (e) => {
+  const projectModal = document.querySelector(".modal-edit-project");
+  const taskModal = document.querySelector(".modal-edit-task");
+  const overlay = document.querySelector(".overlay");
+
   if (
     e.target === overlay ||
     e.target.classList.contains("modal-edit-cbutton")
   ) {
     changeOverlayState();
+    projectModal.style.display = "none";
+    taskModal.style.display = "none";
   }
 };
 
-const editProjectTitle = (e) => {
+const clearTaskEditInputs = () => {
   const overlay = document.querySelector(".overlay");
+  const taskModal = document.querySelector(".modal-edit-task");
+  const editTitleInput = getElement(".modal-title-input-task");
+  const editDescInput = getElement(".modal-desc-input-task");
+  const editDateInput = getElement('[name="date-edit"]');
+
+  editTitleInput.value = "";
+  editDescInput.value = "";
+  editDateInput.value = "";
+  taskModal.style.display = "none";
+  overlay.classList.add("hidden");
+};
+
+const editProjectTitle = (e) => {
+  const projectModal = document.querySelector(".modal-edit-project");
   const editInput = document.querySelector(".modal-edit-input");
 
   getCurrentProject().setTitle(editInput.value);
   renderProjectsFromProjectList();
 
   if (editInput.value !== "") {
-    overlay.classList.toggle("hidden");
+    changeOverlayState();
     editInput.value = "";
+    projectModal.style.display = "none";
   }
+};
+
+const editTaskDetails = (e) => {
+  const editTitleInput = getElement(".modal-title-input-task");
+  const editDescInput = getElement(".modal-desc-input-task");
+  const editDateInput = getElement('[name="date-edit"]');
+  const editColorInput = getElement('[name="colors-edit"]');
+
+  const taskId = getCurrentTaskId();
+
+  const task = getTaskById(getCurrentProject(), taskId);
+
+  task.setTitle(editTitleInput.value);
+  task.setDescription(editDescInput.value);
+  task.setDueDate(editDateInput.value);
+  task.setPriority(editColorInput.value);
+
+  renderTasksFromCurrentProject();
+
+  clearTaskEditInputs();
 };
 
 const handleClicks = (e) => {
@@ -140,10 +196,14 @@ const handleClicks = (e) => {
     showProjectModal(e);
   } else if (e.target.classList.contains("task-remove")) {
     removeTaskOnClick(e);
-  } else if (e.currentTarget.classList.contains("overlay")) {
-    closeProjectModal(e);
+  } else if (e.target.classList.contains("task-edit")) {
+    showTaskModal(e);
   } else if (e.target.classList.contains("modal-edit-ebutton")) {
     editProjectTitle(e);
+  } else if (e.target.classList.contains("modal-edit-ebutton-task")) {
+    editTaskDetails(e);
+  } else if (e.currentTarget.classList.contains("overlay")) {
+    closeModals(e);
   }
 };
 
@@ -167,6 +227,11 @@ const addEditProjectModalListeners = () => {
   editModal.addEventListener("click", handleClicks);
 };
 
+const addEditTaskModalListeners = () => {
+  const editModal = document.querySelector(".modal-edit-ebutton-task");
+  editModal.addEventListener("click", handleClicks);
+};
+
 const addListeners = () => {
   addTodo();
   addProject();
@@ -174,6 +239,7 @@ const addListeners = () => {
   addTaskListeners();
   addOverlayListeners();
   addEditProjectModalListeners();
+  addEditTaskModalListeners();
 };
 
 export { addDefaultProject, addListeners };

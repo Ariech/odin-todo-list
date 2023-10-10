@@ -59,7 +59,9 @@ body {
 /* Overlay */
 
 .overlay {
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: fixed;
   left: 0;
   top: 0;
@@ -75,7 +77,8 @@ body {
 
 /* Modals */
 
-.modal-edit {
+.modal-edit-project {
+  display: none;
   z-index: 1;
   position: relative;
   margin: 0 auto;

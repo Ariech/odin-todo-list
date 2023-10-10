@@ -138,7 +138,7 @@ const createDefaultProjectElement = (project) => {
 };
 
 const editProjectModal = () => {
-  const projectModal = createElement("div", "modal-edit");
+  const projectModal = createElement("div", "modal-edit-project");
 
   const titleContainer = createElement("div", "modal-edit-title-container");
 
@@ -169,6 +169,40 @@ const editProjectModal = () => {
   projectModal.append(titleContainer, contentContainer, buttonContainer);
 
   return projectModal;
+};
+
+const editTaskModal = () => {
+  const taskModal = createElement("div", "modal-edit");
+
+  const titleContainer = createElement("div", "modal-edit-title-container");
+
+  const h1 = createElement("h1", "modal-edit-title");
+  h1.textContent = "Edit project";
+
+  const contentContainer = createElement("div", "modal-edit-content-container");
+
+  const label = createElement("label", "modal-edit-label");
+  label.setAttribute("for", "modal-title");
+  label.textContent = "Title";
+
+  const input = createElement("input", "modal-edit-input");
+  input.setAttribute("name", "modal-title");
+  input.setAttribute("id", "modal-title");
+
+  const buttonContainer = createElement("div", "modal-edit-button-container");
+
+  const cancelButton = createElement("button", "modal-edit-cbutton");
+  cancelButton.textContent = "Cancel";
+
+  const editButton = createElement("button", "modal-edit-ebutton");
+  editButton.textContent = "Edit";
+
+  titleContainer.append(h1);
+  contentContainer.append(label, input);
+  buttonContainer.append(cancelButton, editButton);
+  taskModal.append(titleContainer, contentContainer, buttonContainer);
+
+  return taskModal;
 };
 
 const createTaskElement = (task) => {

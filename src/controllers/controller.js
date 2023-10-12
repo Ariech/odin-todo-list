@@ -48,6 +48,8 @@ const addTodo = () => {
   });
 };
 
+// Implementing localStorage
+
 const addProject = () => {
   const form = getElement(".project-form");
   const titleInput = getElement('[name="project-title"]');

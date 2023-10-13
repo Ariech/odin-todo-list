@@ -1,4 +1,9 @@
 import { printProjectsFromProjectList } from "../views/view";
+import {
+  createTask,
+  createProject,
+  createProjectElement,
+} from "../controllers/controller";
 const projectList = [];
 let currentProject = "";
 let currentTaskId = "";
@@ -63,11 +68,57 @@ const getTaskById = (project, taskId) => {
 const updateLocalStorage = () => {
   const projectListData = projectList.map((project) => ({
     id: project.getId(),
-    tasks: project.tasks,
+    tasks: serializeProjectTasks(project),
     title: project.getTitle(),
   }));
 
-  localStorage.setItem("projectList", JSON.stringify(projectListData.slice(1)));
+  localStorage.setItem("projectList", JSON.stringify(projectListData));
+};
+
+const serializeTask = (task) => {
+  return {
+    id: task.getId(),
+    title: task.getTitle(),
+    description: task.getDescription(),
+    dueDate: task.getDueDate(),
+    priority: task.getPriority(),
+  };
+};
+
+const deserializeTask = (taskData, project) => {
+  const task = createTask(
+    taskData.title,
+    taskData.description,
+    taskData.dueDate,
+    taskData.priority,
+    project
+  );
+  task.setId(taskData.id);
+
+  return task;
+};
+
+const serializeProjectTasks = (project) => {
+  return project.tasks.map((task) => serializeTask(task));
+};
+
+const initLocalStorage = () => {
+  const projectListData = JSON.parse(localStorage.getItem("projectList"));
+
+  if (Array.isArray(projectListData)) {
+    projectListData.forEach((projectData) => {
+      const project = createProject(projectData.title);
+      project.setId(projectData.id);
+
+      const tasks = projectData.tasks.map((taskData) =>
+        deserializeTask(taskData, project)
+      );
+
+      tasks.forEach((task) => addTaskToProjectTasks(project, task));
+      addProjectToProjectList(project);
+      createProjectElement(project);
+    });
+  }
 };
 
 export {
@@ -83,4 +134,5 @@ export {
   setCurrentTaskId,
   getCurrentTaskId,
   updateLocalStorage,
+  initLocalStorage,
 };

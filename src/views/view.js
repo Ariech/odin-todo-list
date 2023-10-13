@@ -1,9 +1,9 @@
+import { addDefaultProject, addListeners } from "../controllers/controller";
 import {
-  addDefaultProject,
-  addListeners,
+  projectList,
+  getCurrentProject,
   initLocalStorage,
-} from "../controllers/controller";
-import { projectList, getCurrentProject } from "../models/model";
+} from "../models/model";
 
 const printTasksFromProject = (project) => {
   project.tasks.forEach((ele) => console.log(ele.getInfo()));
@@ -110,17 +110,22 @@ const createProjectElement = (project) => {
   projectTitle.textContent = project.getTitle();
   projectTitle.dataset.projectId = project.getId();
 
-  const projectEdit = createElement("button");
-  projectEdit.classList.add("project-edit");
-  projectEdit.textContent = "Edit";
-  projectEdit.dataset.projectId = project.getId();
+  projectElement.append(projectTitle);
 
-  const projectRemove = createElement("button");
-  projectRemove.classList.add("project-remove");
-  projectRemove.textContent = "Remove";
-  projectRemove.dataset.projectId = project.getId();
+  if (project.getTitle() !== "Default") {
+    const projectEdit = createElement("button");
+    projectEdit.classList.add("project-edit");
+    projectEdit.textContent = "Edit";
+    projectEdit.dataset.projectId = project.getId();
 
-  projectElement.append(projectTitle, projectEdit, projectRemove);
+    const projectRemove = createElement("button");
+    projectRemove.classList.add("project-remove");
+    projectRemove.textContent = "Remove";
+    projectRemove.dataset.projectId = project.getId();
+
+    projectElement.append(projectEdit, projectRemove);
+  }
+
   projectList.append(projectElement);
 };
 

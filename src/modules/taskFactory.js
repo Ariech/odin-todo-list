@@ -1,5 +1,5 @@
 const createTask = (title, description, dueDate, priority, project) => {
-  const id = new Date().getTime().toString();
+  let id = new Date().getTime().toString();
   const getId = () => id;
 
   const getProjectId = () => project.getId();
@@ -36,6 +36,12 @@ const createTask = (title, description, dueDate, priority, project) => {
     }
   };
 
+  const setId = (value) => {
+    if (value) {
+      id = value;
+    }
+  };
+
   const getInfo = () => {
     return `Id: ${getId()}, title: ${title}, description: ${description}, dueDate: ${dueDate}, priority: ${priority}`;
   };
@@ -52,6 +58,7 @@ const createTask = (title, description, dueDate, priority, project) => {
     setDescription,
     setDueDate,
     setPriority,
+    setId,
   };
 };
 

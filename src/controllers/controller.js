@@ -45,6 +45,7 @@ const addTodo = () => {
     addTaskToProjectTasks(project, task);
     renderTasksFromCurrentProject();
 
+    updateLocalStorage();
     form.reset();
   });
 };
@@ -72,23 +73,18 @@ const addProject = () => {
   });
 };
 
-// Implementing localStorage
-
-const initLocalStorage = () => {
-  const projectListData = JSON.parse(localStorage.getItem("projectList"));
-
-  if (Array.isArray(projectListData)) {
-    projectListData.forEach((projectData) => {
-      const project = createProject(projectData.title);
-      project.setId(projectData.id);
-      project.tasks = projectData.tasks;
-      addProjectToProjectList(project);
-      createProjectElement(project);
-    });
-  }
-};
-
 const addDefaultProject = () => {
+  const projectListData = JSON.parse(localStorage.getItem("projectList"));
+  if (Array.isArray(projectListData)) {
+    const defaultProjectExists = projectListData.some(
+      (projectData) => projectData.title === "Default"
+    );
+
+    if (defaultProjectExists) {
+      return;
+    }
+  }
+
   const temp = createProject("Default");
   addProjectToProjectList(temp);
   createDefaultProjectElement(temp);
@@ -121,6 +117,7 @@ const removeTaskOnClick = (e) => {
 
   removeTaskFromProjectTasks(projectId, taskId);
   renderTasksFromCurrentProject();
+  updateLocalStorage();
 };
 
 const changeOverlayState = () => {
@@ -178,6 +175,12 @@ const editProjectTitle = (e) => {
   const projectModal = document.querySelector(".modal-edit-project");
   const editInput = document.querySelector(".modal-edit-input");
 
+  if (editInput.value === "Default") {
+    alert("Use other name!");
+    editInput.value = "";
+    return;
+  }
+
   getCurrentProject().setTitle(editInput.value);
   renderProjectsFromProjectList();
 
@@ -208,6 +211,7 @@ const editTaskDetails = (e) => {
   renderTasksFromCurrentProject();
 
   clearTaskEditInputs();
+  updateLocalStorage();
 };
 
 const handleClicks = (e) => {
@@ -265,4 +269,10 @@ const addListeners = () => {
   addEditTaskModalListeners();
 };
 
-export { addDefaultProject, addListeners, initLocalStorage };
+export {
+  addDefaultProject,
+  addListeners,
+  createTask,
+  createProject,
+  createProjectElement,
+};

@@ -1,4 +1,8 @@
-import { addDefaultProject, addListeners } from "../controllers/controller";
+import {
+  addDefaultProject,
+  addListeners,
+  initLocalStorage,
+} from "../controllers/controller";
 import { projectList, getCurrentProject } from "../models/model";
 
 const printTasksFromProject = (project) => {
@@ -388,6 +392,7 @@ const getInitPage = () => {
   addListeners();
   addDefaultProject();
   editProjectModal();
+  initLocalStorage();
 };
 
 export {

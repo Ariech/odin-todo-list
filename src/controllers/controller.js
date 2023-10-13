@@ -12,6 +12,7 @@ import {
   getTaskById,
   setCurrentTaskId,
   getCurrentTaskId,
+  updateLocalStorage,
 } from "../models/model";
 import {
   getElement,
@@ -48,8 +49,6 @@ const addTodo = () => {
   });
 };
 
-// Implementing localStorage
-
 const addProject = () => {
   const form = getElement(".project-form");
   const titleInput = getElement('[name="project-title"]');
@@ -62,12 +61,31 @@ const addProject = () => {
       form.reset();
       return;
     }
+
     const project = createProject(titleInput.value);
     addProjectToProjectList(project);
     createProjectElement(project);
 
+    updateLocalStorage();
+
     form.reset();
   });
+};
+
+// Implementing localStorage
+
+const initLocalStorage = () => {
+  const projectListData = JSON.parse(localStorage.getItem("projectList"));
+
+  if (Array.isArray(projectListData)) {
+    projectListData.forEach((projectData) => {
+      const project = createProject(projectData.title);
+      project.setId(projectData.id);
+      project.tasks = projectData.tasks;
+      addProjectToProjectList(project);
+      createProjectElement(project);
+    });
+  }
 };
 
 const addDefaultProject = () => {
@@ -94,6 +112,7 @@ const removeProjectOnClick = (e) => {
   setCurrentProject(projectList[0].getId());
   renderProjectsFromProjectList();
   renderTasksFromCurrentProject();
+  updateLocalStorage();
 };
 
 const removeTaskOnClick = (e) => {
@@ -167,6 +186,8 @@ const editProjectTitle = (e) => {
     editInput.value = "";
     projectModal.style.display = "none";
   }
+
+  updateLocalStorage();
 };
 
 const editTaskDetails = (e) => {
@@ -244,4 +265,4 @@ const addListeners = () => {
   addEditTaskModalListeners();
 };
 
-export { addDefaultProject, addListeners };
+export { addDefaultProject, addListeners, initLocalStorage };

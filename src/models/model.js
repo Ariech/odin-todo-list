@@ -60,6 +60,16 @@ const getTaskById = (project, taskId) => {
   return project.tasks.find((task) => task.getId() === taskId);
 };
 
+const updateLocalStorage = () => {
+  const projectListData = projectList.map((project) => ({
+    id: project.getId(),
+    tasks: project.tasks,
+    title: project.getTitle(),
+  }));
+
+  localStorage.setItem("projectList", JSON.stringify(projectListData.slice(1)));
+};
+
 export {
   projectList,
   addTaskToProjectTasks,
@@ -72,4 +82,5 @@ export {
   getTaskById,
   setCurrentTaskId,
   getCurrentTaskId,
+  updateLocalStorage,
 };

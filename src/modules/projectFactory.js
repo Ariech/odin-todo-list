@@ -1,6 +1,13 @@
 const createProject = (title) => {
   const tasks = [];
-  const id = new Date().getTime().toString();
+  let id = new Date().getTime().toString();
+
+  const setId = (value) => {
+    if (value) {
+      id = value;
+    }
+  };
+
   const getId = () => id;
 
   const getTitle = () => title;
@@ -21,6 +28,7 @@ const createProject = (title) => {
     getTitle,
     getInfo,
     setTitle,
+    setId,
   };
 };
 

@@ -191,7 +191,7 @@ const editTaskModal = () => {
     "modal-edit-title-container-task"
   );
 
-  const h1 = createElement("h1", "modal-edit-title-task");
+  const h1 = createElement("h1", "modal-edit-title");
   h1.textContent = "Edit task";
 
   const contentContainer = createElement(
@@ -199,7 +199,7 @@ const editTaskModal = () => {
     "modal-edit-content-container-task"
   );
 
-  const labelTitle = createElement("label", "modal-edit-label-task");
+  const labelTitle = createElement("label", "modal-edit-label");
   labelTitle.setAttribute("for", "modal-title-task");
   labelTitle.textContent = "Title";
 
@@ -207,7 +207,7 @@ const editTaskModal = () => {
   inputTitle.setAttribute("name", "modal-title-task");
   inputTitle.setAttribute("id", "modal-title-task");
 
-  const labelDescription = createElement("label", "modal-edit-label-task");
+  const labelDescription = createElement("label", "modal-edit-label");
   labelDescription.setAttribute("for", "modal-description-task");
   labelDescription.textContent = "Description";
 

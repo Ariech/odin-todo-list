@@ -165,6 +165,7 @@ const editProjectModal = () => {
   const input = createElement("input", "modal-edit-input");
   input.setAttribute("name", "modal-title");
   input.setAttribute("id", "modal-title");
+  input.setAttribute("placeholder", "Project name");
 
   const buttonContainer = createElement("div", "modal-edit-button-container");
 
@@ -211,6 +212,8 @@ const editTaskModal = () => {
   labelDescription.textContent = "Description";
 
   const inputDescription = createElement("textarea", "modal-desc-input-task");
+  inputDescription.setAttribute("name", "modal-description-task");
+  inputDescription.setAttribute("id", "modal-description-task");
   inputDescription.rows = "3";
   inputDescription.cols = "7";
 

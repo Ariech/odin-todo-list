@@ -129,7 +129,7 @@ const showProjectModal = (e) => {
   const projectModal = document.querySelector(".modal-edit-project");
 
   changeOverlayState();
-  projectModal.style.display = "block";
+  projectModal.style.display = "flex";
 
   selectProjectIdOnClick(e);
 };
@@ -138,7 +138,7 @@ const showTaskModal = (e) => {
   const taskModal = document.querySelector(".modal-edit-task");
 
   changeOverlayState();
-  taskModal.style.display = "block";
+  taskModal.style.display = "flex";
   selectTaskIdOnClick(e);
 };
 

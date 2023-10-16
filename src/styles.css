@@ -169,6 +169,7 @@ select[name="colors"] {
   justify-content: center;
   align-items: center;
   min-height: 100px;
+  gap: 0.5rem;
 }
 
 .fa-github::before {

@@ -23,6 +23,34 @@ body {
   padding: 0 2rem;
 }
 
+/* Common styles */
+
+.project-form,
+.task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.task-form input,
+.task-form select,
+.project-form input,
+.submit-button {
+  background-color: rgb(2, 2, 2);
+  color: var(--light-gray);
+  border: 1px solid var(--light-gray);
+  padding: 7px;
+  border-radius: 3px;
+}
+
+.submit-button {
+  margin: 1rem 0 2rem;
+  border: 3px solid var(--neon-pink);
+  color: var(--neon-pink);
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
 /* Header section */
 
 .header {
@@ -56,22 +84,6 @@ body {
   font-size: 2.5rem;
 }
 
-.task-form {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.task-form input,
-.task-form select,
-.submit-button {
-  background-color: rgb(2, 2, 2);
-  color: var(--light-gray);
-  border: 1px solid var(--light-gray);
-  padding: 7px;
-  border-radius: 3px;
-}
-
 /* Calendar date picker icon */
 ::-webkit-calendar-picker-indicator {
   filter: invert(100%);
@@ -81,14 +93,6 @@ body {
   display: flex;
   gap: 1rem;
   background-color: blue;
-}
-
-.submit-button {
-  margin: 1rem 0 2rem;
-  border: 3px solid var(--neon-pink);
-  color: var(--neon-pink);
-  font-size: 1.25rem;
-  font-weight: bold;
 }
 
 /* Footer section */

@@ -15,12 +15,8 @@ const addTaskToProjectTasks = (project, task) => {
 const removeTaskFromProjectTasks = (projectId, taskId) => {
   const project = getProjectById(projectId);
   const task = getTaskById(project, taskId);
-
-  project.tasks.splice(task, 1);
-
-  project.tasks.forEach((task) => {
-    console.log(task.getInfo());
-  });
+  const taskIndex = project.tasks.indexOf(task);
+  project.tasks.splice(taskIndex, 1);
 };
 
 const addProjectToProjectList = (project) => {

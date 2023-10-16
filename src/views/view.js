@@ -48,17 +48,17 @@ const createTaskForm = () => {
   const colors = createElement("select");
   colors.name = "colors";
 
-  const red = createElement("option");
-  red.value = "red";
-  red.textContent = "red";
-  const yellow = createElement("option");
-  yellow.value = "yellow";
-  yellow.textContent = "yellow";
-  const green = createElement("option");
-  green.value = "green";
-  green.textContent = "green";
+  const high = createElement("option");
+  high.value = "high";
+  high.textContent = "high";
+  const medium = createElement("option");
+  medium.value = "medium";
+  medium.textContent = "medium";
+  const low = createElement("option");
+  low.value = "low";
+  low.textContent = "low";
 
-  colors.append(red, yellow, green);
+  colors.append(high, medium, low);
 
   const submitButton = createElement("button", "submit-button");
   submitButton.textContent = "Add task";
@@ -224,17 +224,17 @@ const editTaskModal = () => {
   const colors = createElement("select");
   colors.name = "colors-edit";
 
-  const red = createElement("option");
-  red.value = "red";
-  red.textContent = "red";
-  const yellow = createElement("option");
-  yellow.value = "yellow";
-  yellow.textContent = "yellow";
-  const green = createElement("option");
-  green.value = "green";
-  green.textContent = "green";
+  const high = createElement("option");
+  high.value = "high";
+  high.textContent = "high";
+  const medium = createElement("option");
+  medium.value = "medium";
+  medium.textContent = "medium";
+  const low = createElement("option");
+  low.value = "low";
+  low.textContent = "low";
 
-  colors.append(red, yellow, green);
+  colors.append(high, medium, low);
 
   const buttonContainer = createElement("div", "modal-edit-button-container");
 

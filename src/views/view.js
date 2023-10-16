@@ -38,10 +38,8 @@ const createTaskForm = () => {
   title.placeholder = "Add task";
   title.name = "task";
 
-  const description = createElement("input");
-  description.type = "text";
+  const description = createElement("textarea", "task-desc-ta");
   description.placeholder = "Description";
-  description.name = "description";
 
   const date = createElement("input");
   date.type = "date";
@@ -113,17 +111,21 @@ const createProjectElement = (project) => {
   projectElement.append(projectTitle);
 
   if (project.getTitle() !== "Default") {
-    const projectEdit = createElement("button");
+    const buttonContainer = createElement("div", "project-button-container");
+    const projectEdit = createElement("i");
+    projectEdit.classList.add("fa-regular");
+    projectEdit.classList.add("fa-pen-to-square");
     projectEdit.classList.add("project-edit");
-    projectEdit.textContent = "Edit";
     projectEdit.dataset.projectId = project.getId();
 
-    const projectRemove = createElement("button");
+    const projectRemove = createElement("i");
+    projectRemove.classList.add("fa-regular");
+    projectRemove.classList.add("fa-trash-can");
     projectRemove.classList.add("project-remove");
-    projectRemove.textContent = "Remove";
     projectRemove.dataset.projectId = project.getId();
 
-    projectElement.append(projectEdit, projectRemove);
+    buttonContainer.append(projectEdit, projectRemove);
+    projectElement.append(buttonContainer);
   }
 
   projectList.append(projectElement);
@@ -208,9 +210,9 @@ const editTaskModal = () => {
   labelDescription.setAttribute("for", "modal-description-task");
   labelDescription.textContent = "Description";
 
-  const inputDescription = createElement("input", "modal-desc-input-task");
-  inputDescription.setAttribute("name", "modal-description-task");
-  inputDescription.setAttribute("id", "modal-description-task");
+  const inputDescription = createElement("textarea", "modal-desc-input-task");
+  inputDescription.rows = "3";
+  inputDescription.cols = "7";
 
   const date = createElement("input");
   date.type = "date";
@@ -284,23 +286,29 @@ const createTaskElement = (task) => {
   const currentProjectId = task.getProjectId();
   taskElement.dataset.projectId = currentProjectId;
 
-  const taskEdit = createElement("button");
+  const buttonContainer = createElement("div", "task-button-container");
+
+  const taskEdit = createElement("i");
   taskEdit.classList.add("task-edit");
-  taskEdit.textContent = "Edit";
+  taskEdit.classList.add("fa-regular");
+  taskEdit.classList.add("fa-pen-to-square");
   taskEdit.dataset.taskId = task.getId();
 
-  const taskRemove = createElement("button");
+  const taskRemove = createElement("i");
   taskRemove.classList.add("task-remove");
-  taskRemove.textContent = "Remove";
+  taskRemove.classList.add("fa-regular");
+  taskRemove.classList.add("fa-trash-can");
+
   taskRemove.dataset.taskId = task.getId();
+
+  buttonContainer.append(taskEdit, taskRemove);
 
   taskElement.append(
     taskTitle,
     taskDesc,
     taskDate,
     taskPriority,
-    taskEdit,
-    taskRemove
+    buttonContainer
   );
   taskList.append(taskElement);
 };
@@ -340,17 +348,12 @@ const createHeader = () => {
 
 const createMain = () => {
   const main = createElement("main", "main");
+  const projectContainer = createElement("div", "project-container");
+  const taskContainer = createElement("div", "task-container");
 
-  const h1 = createElement("h1", "todo-title");
-  h1.textContent = "Todos";
-
-  main.append(
-    createProjectForm(),
-    createProjectList(),
-    h1,
-    createTaskForm(),
-    createTaskList()
-  );
+  projectContainer.append(createProjectForm(), createProjectList());
+  taskContainer.append(createTaskForm(), createTaskList());
+  main.append(projectContainer, taskContainer);
   return main;
 };
 

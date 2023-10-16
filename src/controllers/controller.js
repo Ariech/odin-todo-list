@@ -25,7 +25,7 @@ import {
 const addTodo = () => {
   const form = getElement(".task-form");
   const titleInput = getElement('[name="task"]');
-  const descriptionInput = getElement('[name="description"]');
+  const descriptionInput = getElement(".task-desc-ta");
   const dateInput = getElement('[name="date"]');
   const colorInput = getElement('[name="colors"]');
 

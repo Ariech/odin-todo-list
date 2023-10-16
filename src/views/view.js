@@ -341,7 +341,7 @@ const createHeader = () => {
 const createMain = () => {
   const main = createElement("main", "main");
 
-  const h1 = createElement("h1");
+  const h1 = createElement("h1", "todo-title");
   h1.textContent = "Todos";
 
   main.append(

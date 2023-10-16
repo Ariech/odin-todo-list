@@ -1,5 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap");
 
+:root {
+  --light-gray: #b9b9b9;
+  --neon-pink: #e6007e;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -9,8 +14,13 @@
 html,
 body {
   height: 100%;
-  background-color: #423e3e;
+  background-color: black;
   font-family: "Roboto", sans-serif;
+  color: white;
+}
+
+.container {
+  padding: 0 2rem;
 }
 
 /* Header section */
@@ -30,16 +40,55 @@ body {
   height: calc(100vh - 150px);
 }
 
+/* Project section */
+
 .project-element {
   display: flex;
   gap: 1rem;
   background-color: red;
 }
 
+/* Task section */
+
+.todo-title {
+  text-align: center;
+  padding: 1rem;
+  font-size: 2.5rem;
+}
+
+.task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.task-form input,
+.task-form select,
+.submit-button {
+  background-color: rgb(2, 2, 2);
+  color: var(--light-gray);
+  border: 1px solid var(--light-gray);
+  padding: 7px;
+  border-radius: 3px;
+}
+
+/* Calendar date picker icon */
+::-webkit-calendar-picker-indicator {
+  filter: invert(100%);
+}
+
 .task-element {
   display: flex;
   gap: 1rem;
   background-color: blue;
+}
+
+.submit-button {
+  margin: 1rem 0 2rem;
+  border: 3px solid var(--neon-pink);
+  color: var(--neon-pink);
+  font-size: 1.25rem;
+  font-weight: bold;
 }
 
 /* Footer section */

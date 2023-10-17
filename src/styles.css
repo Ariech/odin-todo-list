@@ -130,10 +130,13 @@ body {
   padding: 7px;
 }
 
+input[name="task"] {
+  width: 100%;
+}
+
 .task-element {
   display: grid;
-  grid-template-columns: 1.75fr 2.5fr 1fr 1fr 1fr;
-  gap: 1rem;
+  grid-template-columns: 3fr 5fr 3.5fr 3fr 1fr;
   justify-content: space-between;
   align-items: center;
   background-color: #274e48;
@@ -146,12 +149,7 @@ body {
 
 .task-button-container {
   display: flex;
-  gap: 1rem;
-  padding: 0 1rem;
-}
-
-.task-desc {
-  word-break: break-all;
+  justify-content: center;
 }
 
 .task-desc-ta::placeholder {
@@ -303,7 +301,7 @@ select[name="colors"] {
 
   .task-form {
     display: grid;
-    grid-template-columns: 1.75fr 2.5fr 1fr 1fr 1fr;
+    grid-template-columns: 3fr 5fr 3fr 3fr 1fr;
     margin-bottom: 1rem;
   }
 

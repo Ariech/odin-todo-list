@@ -262,26 +262,26 @@ const editTaskModal = () => {
 const createTaskElement = (task) => {
   const taskList = getElement(".task-list");
 
-  const taskElement = createElement("div");
+  const taskElement = createElement("div", "task");
   taskElement.classList.add("task-element");
   taskElement.dataset.taskId = task.getId();
 
-  const taskTitle = createElement("p");
+  const taskTitle = createElement("p", "task");
   taskTitle.classList.add("task-title");
   taskTitle.textContent = task.getTitle();
   taskTitle.dataset.taskId = task.getId();
 
-  const taskDesc = createElement("p");
+  const taskDesc = createElement("p", "task");
   taskDesc.classList.add("task-desc");
   taskDesc.textContent = task.getDescription();
   taskDesc.dataset.taskId = task.getId();
 
-  const taskDate = createElement("p");
+  const taskDate = createElement("p", "task");
   taskDate.classList.add("task-date");
   taskDate.textContent = task.getDueDate();
   taskDate.dataset.taskId = task.getId();
 
-  const taskPriority = createElement("p");
+  const taskPriority = createElement("p", "task");
   taskPriority.classList.add("task-priority");
   taskPriority.textContent = task.getPriority();
   taskPriority.dataset.taskId = task.getId();

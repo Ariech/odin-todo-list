@@ -135,8 +135,8 @@ input[name="task"] {
 }
 
 .task-element {
-  display: grid;
-  grid-template-columns: 3fr 5fr 3.5fr 3fr 1fr;
+  display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   background-color: #274e48;
@@ -144,7 +144,7 @@ input[name="task"] {
   overflow: hidden;
   min-height: 40px;
   padding: 0 7px;
-  word-break: break-all;
+  text-align: center;
 }
 
 .task-button-container {
@@ -311,6 +311,11 @@ select[name="colors"] {
     color: var(--neon-pink);
     font-size: 1rem;
     font-weight: bold;
+  }
+
+  .task-element {
+    display: grid;
+    grid-template-columns: 3fr 5fr 3.5fr 3fr 1fr;
   }
 
   .task-form input,
